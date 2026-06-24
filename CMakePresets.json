@@ -1,0 +1,83 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "ubuntu-llvm21-debug",
+      "displayName": "Ubuntu LLVM 21 Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/ubuntu-llvm21-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "LLVM_DIR": "/usr/lib/llvm-21/lib/cmake/llvm",
+        "Clang_DIR": "/usr/lib/llvm-21/lib/cmake/clang",
+        "CUDAMEMTRACE_CORE_BUILD_TESTS": "ON",
+        "CUDAMEMTRACE_CORE_BUILD_EXAMPLES": "ON"
+      }
+    },
+    {
+      "name": "ubuntu-llvm21-release",
+      "displayName": "Ubuntu LLVM 21 Release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/ubuntu-llvm21-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "LLVM_DIR": "/usr/lib/llvm-21/lib/cmake/llvm",
+        "Clang_DIR": "/usr/lib/llvm-21/lib/cmake/clang",
+        "CUDAMEMTRACE_CORE_BUILD_TESTS": "ON",
+        "CUDAMEMTRACE_CORE_BUILD_EXAMPLES": "ON"
+      }
+    },
+    {
+      "name": "ubuntu-llvm21-docs",
+      "displayName": "Ubuntu LLVM 21 Docs",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/ubuntu-llvm21-docs",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "LLVM_DIR": "/usr/lib/llvm-21/lib/cmake/llvm",
+        "Clang_DIR": "/usr/lib/llvm-21/lib/cmake/clang",
+        "CUDAMEMTRACE_CORE_BUILD_TESTS": "OFF",
+        "CUDAMEMTRACE_CORE_BUILD_EXAMPLES": "OFF",
+        "CUDAMEMTRACE_CORE_BUILD_DOCS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "ubuntu-llvm21-debug",
+      "configurePreset": "ubuntu-llvm21-debug"
+    },
+    {
+      "name": "ubuntu-llvm21-release",
+      "configurePreset": "ubuntu-llvm21-release"
+    },
+    {
+      "name": "ubuntu-llvm21-docs",
+      "configurePreset": "ubuntu-llvm21-docs",
+      "targets": [
+        "docs"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "ubuntu-llvm21-debug",
+      "configurePreset": "ubuntu-llvm21-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "ubuntu-llvm21-release",
+      "configurePreset": "ubuntu-llvm21-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

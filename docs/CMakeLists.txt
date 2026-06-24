@@ -1,0 +1,21 @@
+find_package(Doxygen REQUIRED OPTIONAL_COMPONENTS dot)
+
+set(CUDAMEMTRACE_DOXYGEN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+if(DOXYGEN_DOT_FOUND)
+  set(CUDAMEMTRACE_DOXYGEN_HAVE_DOT YES)
+else()
+  set(CUDAMEMTRACE_DOXYGEN_HAVE_DOT NO)
+endif()
+
+configure_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/doxygen/Doxyfile.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"
+  @ONLY
+)
+
+add_custom_target(docs
+  COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"
+  WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+  COMMENT "Generating CudaMemTrace Core API documentation with Doxygen"
+  VERBATIM
+)

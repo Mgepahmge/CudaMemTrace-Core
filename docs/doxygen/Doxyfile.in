@@ -1,0 +1,58 @@
+# Doxygen configuration for CudaMemTrace Core.
+# This file is configured by CMake into the build directory.
+
+PROJECT_NAME           = "CudaMemTrace Core"
+PROJECT_NUMBER         = "@PROJECT_VERSION@"
+PROJECT_BRIEF          = "Core library for CFG/ICFG-based CUDA memory allocation/free timelines"
+
+OUTPUT_DIRECTORY       = "@CUDAMEMTRACE_DOXYGEN_OUTPUT_DIR@"
+CREATE_SUBDIRS         = NO
+
+INPUT                  = "@CMAKE_CURRENT_SOURCE_DIR@/include" \
+                         "@CMAKE_CURRENT_SOURCE_DIR@/src" \
+                         "@CMAKE_CURRENT_SOURCE_DIR@/docs/doxygen/mainpage.md"
+
+USE_MDFILE_AS_MAINPAGE = "@CMAKE_CURRENT_SOURCE_DIR@/docs/doxygen/mainpage.md"
+
+RECURSIVE              = YES
+FILE_PATTERNS          = *.h *.hh *.hpp *.hxx *.c *.cc *.cpp *.cxx *.md
+EXCLUDE_PATTERNS       = */build/* */third_party/*
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = NO
+MULTILINE_CPP_IS_BRIEF = NO
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_LATEX         = NO
+GENERATE_XML           = NO
+
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = "@CMAKE_CURRENT_SOURCE_DIR@"
+
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+WARN_AS_ERROR          = NO
+
+QUIET                  = NO
+
+HAVE_DOT               = @CUDAMEMTRACE_DOXYGEN_HAVE_DOT@
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+CLASS_DIAGRAMS         = YES
+UML_LOOK               = NO
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
