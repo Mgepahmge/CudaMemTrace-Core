@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 project(CudaMemTraceCore
   VERSION 0.1.0
   DESCRIPTION "Static core library for CFG/ICFG-based CUDA memory allocation/free timelines"
-  LANGUAGES CXX
+  LANGUAGES CXX C
 )
 
 include(GNUInstallDirs)
