@@ -43,13 +43,14 @@ namespace cudamemtrace::core {
     CFGEdgeId FunctionCFG::addEdge(const CFGEdge& edge) {
         addVal(edge, edge.id, edges);
 
-        if (auto* from_block = findBlock(edge.from)) {
-            from_block->successor_edges.push_back(edge.id);
-        }
+        auto* from_block = findBlock(edge.from);
+        auto* to_block = findBlock(edge.to);
 
-        if (auto* to_block = findBlock(edge.to)) {
-            to_block->predecessor_edges.push_back(edge.id);
-        }
+        assert(from_block && "CFG edge source block does not exist");
+        assert(to_block && "CFG edge target block does not exist");
+
+        from_block->successor_edges.push_back(edge.id);
+        to_block->predecessor_edges.push_back(edge.id);
 
         return edge.id;
     }

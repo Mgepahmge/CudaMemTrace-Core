@@ -80,6 +80,15 @@ namespace cudamemtrace::core {
     }
     CallSiteId ProgramGraph::addCallSite(const CallSite& call_site) {
         addVal(call_site, call_site.id, call_sites);
+
+        auto* cfg = findCFG(call_site.caller_function);
+        assert(cfg && "callsite caller CFG does not exist");
+
+        auto* block = cfg->findBlock(call_site.cfg_block);
+        assert(block && "callsite CFG block does not exist");
+
+        block->call_sites.push_back(call_site.id);
+
         return call_site.id;
     }
     VariableId ProgramGraph::addVariable(const Variable& variable) {

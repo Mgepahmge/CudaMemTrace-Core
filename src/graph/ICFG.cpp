@@ -45,13 +45,14 @@ namespace cudamemtrace::core {
     ICFGEdgeId ICFG::addEdge(const ICFGEdge& edge) {
         addVal(edge, edge.id, edges);
 
-        if (auto* from_node = findNode(edge.from)) {
-            from_node->outgoing_edges.push_back(edge.id);
-        }
+        auto* from_node = findNode(edge.from);
+        auto* to_node = findNode(edge.to);
 
-        if (auto* to_node = findNode(edge.to)) {
-            to_node->incoming_edges.push_back(edge.id);
-        }
+        assert(from_node && "ICFG edge source node dose not exist");
+        assert(to_node && "ICFG edge target node dose not exist");
+
+        from_node->outgoing_edges.push_back(edge.id);
+        to_node->incoming_edges.push_back(edge.id);
 
         return edge.id;
     }
