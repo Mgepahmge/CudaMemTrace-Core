@@ -1,0 +1,8 @@
+//
+// Created by mingyu on 2026/6/25.
+//
+
+#ifndef CUDAMEMTRACECORE_CALLSITE_H
+#define CUDAMEMTRACECORE_CALLSITE_H
+
+#endif // CUDAMEMTRACECORE_CALLSITE_H

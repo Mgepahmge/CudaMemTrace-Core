@@ -1,0 +1,8 @@
+//
+// Created by mingyu on 2026/6/25.
+//
+
+#ifndef CUDAMEMTRACECORE_ICFGEDGE_H
+#define CUDAMEMTRACECORE_ICFGEDGE_H
+
+#endif // CUDAMEMTRACECORE_ICFGEDGE_H

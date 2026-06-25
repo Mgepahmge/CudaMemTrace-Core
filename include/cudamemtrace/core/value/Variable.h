@@ -1,0 +1,8 @@
+//
+// Created by mingyu on 2026/6/25.
+//
+
+#ifndef CUDAMEMTRACECORE_VARIABLE_H
+#define CUDAMEMTRACECORE_VARIABLE_H
+
+#endif // CUDAMEMTRACECORE_VARIABLE_H
