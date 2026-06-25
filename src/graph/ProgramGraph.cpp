@@ -1,4 +1,5 @@
 #include <cudamemtrace/core/graph/ProgramGraph.h>
+#include <cassert>
 
 namespace cudamemtrace::core {
     template <typename Id, typename Val>
@@ -64,10 +65,9 @@ namespace cudamemtrace::core {
 
     template<typename Id, typename Val>
     auto addVal(const Val& val, const Id id, std::unordered_map<typename Id::valueType, Val>& map) {
-        if (auto [it, inserted] = map.try_emplace(id.value(), val); inserted) {
-            return it;
-        }
-        return map.find(id.value());
+        auto [it, inserted] = map.try_emplace(id.value(), val);
+        assert(inserted && "duplicate graph id");
+        return it;
     }
 
     FunctionId ProgramGraph::addFunction(const Function& function) {

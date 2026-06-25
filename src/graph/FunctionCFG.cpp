@@ -1,4 +1,5 @@
 #include <cudamemtrace/core/graph/FunctionCFG.h>
+#include <cassert>
 
 namespace cudamemtrace::core {
     CFGBlock* FunctionCFG::findBlock(const CFGBlockId id) {
@@ -31,10 +32,9 @@ namespace cudamemtrace::core {
     }
     template<typename Id, typename Val>
     auto addVal(const Val& val, const Id id, std::unordered_map<typename Id::valueType, Val>& map) {
-        if (auto [it, inserted] = map.try_emplace(id.value(), val); inserted) {
-            return it;
-        }
-        return map.find(id.value());
+        auto [it, inserted] = map.try_emplace(id.value(), val);
+        assert(inserted && "duplicate graph id");
+        return it;
     }
     CFGBlockId FunctionCFG::addBlock(const CFGBlock& block) {
         addVal(block, block.id, blocks);
@@ -42,6 +42,15 @@ namespace cudamemtrace::core {
     }
     CFGEdgeId FunctionCFG::addEdge(const CFGEdge& edge) {
         addVal(edge, edge.id, edges);
+
+        if (auto* from_block = findBlock(edge.from)) {
+            from_block->successor_edges.push_back(edge.id);
+        }
+
+        if (auto* to_block = findBlock(edge.to)) {
+            to_block->predecessor_edges.push_back(edge.id);
+        }
+
         return edge.id;
     }
 } // namespace cudamemtrace::core

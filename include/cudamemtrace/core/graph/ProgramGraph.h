@@ -1,5 +1,5 @@
-#ifndef CUDAMEMTRACECORE_PROGARAMGRAPH_H
-#define CUDAMEMTRACECORE_PROGARAMGRAPH_H
+#ifndef CUDAMEMTRACECORE_PROGRAMGRAPH_H
+#define CUDAMEMTRACECORE_PROGRAMGRAPH_H
 #include <cudamemtrace/core/graph/Function.h>
 #include <cudamemtrace/core/graph/FunctionCFG.h>
 #include <cudamemtrace/core/graph/ICFG.h>
@@ -54,4 +54,4 @@ namespace cudamemtrace::core {
     };
 }
 
-#endif // CUDAMEMTRACECORE_PROGARAMGRAPH_H
+#endif // CUDAMEMTRACECORE_PROGRAMGRAPH_H
